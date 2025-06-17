@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residencia Moderna Premium - MOGAO Inmobiliaria</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-teal: #1a4a4a;
+            --secondary-teal: #2d5a5a;
+            --accent-gold: #d4af37;
+            --light-gold: #f4e4a6;
+            --cream: #faf8f3;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --shadow: rgba(26, 74, 74, 0.1);
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 20px var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+            color: var(--white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-teal);
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--cream);
+            padding: 1rem 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-teal);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Property Header */
+        .property-header {
+            background: var(--white);
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .property-title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .property-main-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-teal);
+            padding: 15px 30px;
+            border: 2px solid var(--primary-teal);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-teal);
+            color: var(--white);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #e1e5e9;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .share-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Property Features Bar */
+        .features-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding: 3rem 0;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin-bottom: 3rem;
+        }
+
+        .main-gallery {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--primary-teal);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-nav:hover {
+            background: var(--white);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .gallery-nav.prev {
+            left: 20px;
+        }
+
+        .gallery-nav.next {
+            right: 20px;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .thumbnail.active,
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Property Details */
+        .property-details {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-group h4 {
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Amenities */
+        .amenities {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--white);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .amenity-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #e1e5e9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        /* Agent Card */
+        .agent-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .agent-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .agent-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-title {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn.whatsapp {
+            background: #25d366;
+            color: var(--white);
+        }
+
+        .contact-btn.phone {
+            background: var(--primary-teal);
+            color: var(--white);
+        }
+
+        .contact-btn.email {
+            background: transparent;
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mortgage Calculator */
+        .mortgage-calculator {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .calculator-result {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .monthly-payment {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Similar Properties */
+        .similar-properties {
+            padding: 3rem 0;
+            background: var(--cream);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .property-image {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-gold);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-price-small {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-title-small {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .property-location-small {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: var(--text-dark);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .property-title-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .features-bar {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .property-main-info h1 {
+                font-size: 2rem;
+            }
+
+            .property-price {
+                font-size: 2.2rem;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .property-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-06-13%20at%2015.25.07_a831a911.jpg-c2woEp4ZUO1sXxk9jTNcjFzWfplQOQ.jpeg"
+                    alt="MOGAO Logo">
+                <div class="logo-text">MOGAO</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="portafolio.html">Portafolio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#contacto" class="cta-button">Consulta Gratuita</a>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Inicio</a>
+                <span>›</span>
+                <a href="portafolio.html">Portafolio</a>
+                <span>›</span>
+                <span>Residencia Moderna Premium</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Property Header -->
+    <section class="property-header">
+        <div class="container">
+            <div class="property-title-section">
+                <div class="property-main-info">
+                    <h1>Residencia Moderna Premium</h1>
+                    <div class="property-location">
+                        📍 Polanco, Ciudad de México
+                    </div>
+                </div>
+                <div class="property-actions">
+                    <div class="property-price">$4,850,000</div>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareProperty('whatsapp')"
+                            title="Compartir en WhatsApp">📱</button>
+                        <button class="share-btn" onclick="shareProperty('facebook')"
+                            title="Compartir en Facebook">📘</button>
+                        <button class="share-btn" onclick="shareProperty('copy')" title="Copiar enlace">🔗</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-bar">
+                <div class="feature-item">
+                    <div class="feature-value">4</div>
+                    <div class="feature-label">Recámaras</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-value">3.5</div>
+                    <div class="feature-label">Baños</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-value">3</div>
+                    <div class="feature-label">Estacionamientos</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-value">320</div>
+                    <div class="feature-label">m² Construidos</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-value">450</div>
+                    <div class="feature-label">m² de Terreno</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-value">2018</div>
+                    <div class="feature-label">Año Construcción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="main-content">
+                <!-- Left Column -->
+                <div class="content-left">
+                    <!-- Gallery -->
+                    <div class="gallery-section">
+                        <div class="main-gallery">
+                            <img id="main-image"
+                                src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                alt="Residencia Moderna Premium" class="main-image">
+                            <button class="gallery-nav prev" onclick="previousImage()">‹</button>
+                            <button class="gallery-nav next" onclick="nextImage()">›</button>
+                            <div class="gallery-counter">
+                                <span id="current-image">1</span> / <span id="total-images">12</span>
+                            </div>
+                        </div>
+                        <div class="thumbnails" id="thumbnails">
+                            <!-- Thumbnails will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Property Details -->
+                    <div class="property-details">
+                        <h2 class="section-title">Descripción de la Propiedad</h2>
+                        <div class="description">
+                            <p>
+                                Descubre esta excepcional residencia moderna ubicada en el exclusivo barrio de Polanco.
+                                Esta propiedad de lujo combina diseño contemporáneo con funcionalidad, ofreciendo
+                                espacios
+                                amplios y luminosos perfectos para el estilo de vida moderno.
+                            </p>
+                            <p>
+                                La residencia cuenta con acabados de primera calidad, cocina integral con isla central,
+                                sala de estar con doble altura, y un diseño arquitectónico que maximiza la entrada de
+                                luz natural. El jardín privado y la terraza ofrecen espacios perfectos para el
+                                entretenimiento y la relajación.
+                            </p>
+                            <p>
+                                Ubicada en una de las zonas más prestigiosas de la Ciudad de México, esta propiedad
+                                ofrece fácil acceso a centros comerciales, restaurantes de clase mundial, parques,
+                                y las mejores escuelas de la ciudad.
+                            </p>
+                        </div>
+
+                        <div class="features-grid">
+                            <div class="feature-group">
+                                <h4>Características Generales</h4>
+                                <ul class="feature-list">
+                                    <li>Construcción 2018</li>
+                                    <li>Estilo contemporáneo</li>
+                                    <li>Orientación norte-sur</li>
+                                    <li>Pisos de mármol</li>
+                                    <li>Ventanas de piso a techo</li>
+                                    <li>Sistema domótico</li>
+                                </ul>
+                            </div>
+                            <div class="feature-group">
+                                <h4>Interiores</h4>
+                                <ul class="feature-list">
+                                    <li>Sala con doble altura</li>
+                                    <li>Comedor formal</li>
+                                    <li>Cocina integral premium</li>
+                                    <li>Cuarto de servicio</li>
+                                    <li>Estudio/oficina</li>
+                                    <li>Walk-in closet principal</li>
+                                </ul>
+                            </div>
+                            <div class="feature-group">
+                                <h4>Exteriores</h4>
+                                <ul class="feature-list">
+                                    <li>Jardín privado</li>
+                                    <li>Terraza techada</li>
+                                    <li>Área de BBQ</li>
+                                    <li>Cochera techada</li>
+                                    <li>Portón automático</li>
+                                    <li>Sistema de riego</li>
+                                </ul>
+                            </div>
+                            <div class="feature-group">
+                                <h4>Servicios</h4>
+                                <ul class="feature-list">
+                                    <li>Aire acondicionado central</li>
+                                    <li>Calefacción por radiadores</li>
+                                    <li>Sistema de seguridad</li>
+                                    <li>Cisterna y tinaco</li>
+                                    <li>Planta de emergencia</li>
+                                    <li>Internet fibra óptica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div class="amenities">
+                        <h2 class="section-title">Amenidades del Desarrollo</h2>
+                        <div class="amenities-grid">
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🏊‍♂️</span>
+                                <span>Alberca</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🏋️‍♂️</span>
+                                <span>Gimnasio</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🎾</span>
+                                <span>Cancha de Tenis</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🏓</span>
+                                <span>Salón de Juegos</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">👶</span>
+                                <span>Área Infantil</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🚗</span>
+                                <span>Estacionamiento Visitas</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🔒</span>
+                                <span>Seguridad 24/7</span>
+                            </div>
+                            <div class="amenity-item">
+                                <span class="amenity-icon">🌳</span>
+                                <span>Áreas Verdes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Section -->
+                    <div class="map-section">
+                        <h2 class="section-title">Ubicación</h2>
+                        <div class="map-placeholder">
+                            🗺️ Mapa Interactivo - Polanco, CDMX
+                            <br><small>Integración con Google Maps próximamente</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Agent Card -->
+                    <div class="agent-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                            alt="Agente Inmobiliario" class="agent-avatar">
+                        <div class="agent-name">Dalia Lule</div>
+                        <div class="agent-title">Directora Comercial</div>
+                        <div class="agent-contact">
+                            <a href="https://wa.me/5255550123?text=Hola, me interesa la Residencia Moderna Premium en Polanco"
+                                class="contact-btn whatsapp" target="_blank">
+                                📱 WhatsApp
+                            </a>
+                            <a href="tel:+525555550123" class="contact-btn phone">
+                                📞 Llamar
+                            </a>
+                            <button class="contact-btn email" onclick="openContactModal()">
+                                ✉️ Enviar Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mortgage Calculator -->
+                    <div class="mortgage-calculator">
+                        <h3 class="section-title">Calculadora Hipotecaria</h3>
+                        <form class="calculator-form">
+                            <div class="form-group">
+                                <label for="precio">Precio de la Propiedad</label>
+                                <input type="text" id="precio" value="$4,850,000" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="enganche">Enganche (%)</label>
+                                <select id="enganche" onchange="calculateMortgage()">
+                                    <option value="20">20%</option>
+                                    <option value="30" selected>30%</option>
+                                    <option value="40">40%</option>
+                                    <option value="50">50%</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="plazo">Plazo (años)</label>
+                                <select id="plazo" onchange="calculateMortgage()">
+                                    <option value="10">10 años</option>
+                                    <option value="15">15 años</option>
+                                    <option value="20" selected>20 años</option>
+                                    <option value="25">25 años</option>
+                                    <option value="30">30 años</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tasa">Tasa de Interés Anual (%)</label>
+                                <input type="number" id="tasa" value="10.5" step="0.1" onchange="calculateMortgage()">
+                            </div>
+                        </form>
+                        <div class="calculator-result">
+                            <div class="monthly-payment" id="monthly-payment">$28,450/mes</div>
+                            <small>Pago mensual estimado</small>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="agent-card">
+                        <h3 class="section-title">Acciones Rápidas</h3>
+                        <div class="agent-contact">
+                            <button class="btn-primary" onclick="scheduleVisit()">
+                                🏠 Agendar Visita
+                            </button>
+                            <button class="btn-secondary" onclick="requestInfo()">
+                                📋 Solicitar Información
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Properties -->
+    <section class="similar-properties">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Propiedades Similares</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Casa Familiar">
+                        <div class="property-badge">Oportunidad</div>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price-small">$5,650,000</div>
+                        <h3 class="property-title-small">Casa Familiar con Jardín</h3>
+                        <div class="property-location-small">📍 Interlomas, Estado de México</div>
+                        <a href="#" class="btn-primary"
+                            style="width: 100%; text-align: center; display: block; padding: 10px;">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Penthouse">
+                        <div class="property-badge">Nuevo</div>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price-small">$3,200,000</div>
+                        <h3 class="property-title-small">Penthouse Céntrico</h3>
+                        <div class="property-location-small">📍 Roma Norte, CDMX</div>
+                        <a href="#" class="btn-primary"
+                            style="width: 100%; text-align: center; display: block; padding: 10px;">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Casa Contemporánea">
+                        <div class="property-badge">Contemporánea</div>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price-small">$8,900,000</div>
+                        <h3 class="property-title-small">Casa Contemporánea</h3>
+                        <div class="property-location-small">📍 Polanco, CDMX</div>
+                        <a href="#" class="btn-primary"
+                            style="width: 100%; text-align: center; display: block; padding: 10px;">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <h2 class="modal-title">Contactar sobre esta Propiedad</h2>
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label for="contact-name">Nombre Completo *</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Correo Electrónico *</label>
+                    <input type="email" id="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Teléfono</label>
+                    <input type="tel" id="contact-phone">
+                </div>
+                <div class="form-group">
+                    <label for="contact-interest">Tipo de Interés</label>
+                    <select id="contact-interest">
+                        <option value="compra">Compra</option>
+                        <option value="informacion">Más información</option>
+                        <option value="visita">Agendar visita</option>
+                        <option value="financiamiento">Opciones de financiamiento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Mensaje</label>
+                    <textarea id="contact-message"
+                        placeholder="Me interesa esta propiedad. Me gustaría recibir más información..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Gallery functionality
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        ];
+
+        let currentImageIndex = 0;
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeGallery();
+            calculateMortgage();
+        });
+
+        function initializeGallery() {
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            const totalImagesSpan = document.getElementById('total-images');
+
+            totalImagesSpan.textContent = galleryImages.length;
+
+            // Generate thumbnails
+            thumbnailsContainer.innerHTML = galleryImages.map((image, index) =>
+                `<img src="${image}" alt="Imagen ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeImage(${index})">`
+            ).join('');
+        }
+
+        function changeImage(index) {
+            currentImageIndex = index;
+            const mainImage = document.getElementById('main-image');
+            const currentImageSpan = document.getElementById('current-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            mainImage.src = galleryImages[index];
+            currentImageSpan.textContent = index + 1;
+
+            // Update active thumbnail
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextImage() {
+            const nextIndex = (currentImageIndex + 1) % galleryImages.length;
+            changeImage(nextIndex);
+        }
+
+        function previousImage() {
+            const prevIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            changeImage(prevIndex);
+        }
+
+        // Mortgage calculator
+        function calculateMortgage() {
+            const precio = 4850000;
+            const enganchePercent = parseInt(document.getElementById('enganche').value);
+            const plazoAnios = parseInt(document.getElementById('plazo').value);
+            const tasaAnual = parseFloat(document.getElementById('tasa').value);
+
+            const enganche = precio * (enganchePercent / 100);
+            const montoCredito = precio - enganche;
+            const tasaMensual = tasaAnual / 100 / 12;
+            const numeroPageos = plazoAnios * 12;
+
+            const pagoMensual = montoCredito * (tasaMensual * Math.pow(1 + tasaMensual, numeroPageos)) / (Math.pow(1 + tasaMensual, numeroPageos) - 1);
+
+            document.getElementById('monthly-payment').textContent =
+                new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                    minimumFractionDigits: 0
+                }).format(pagoMensual) + '/mes';
+        }
+
+        // Share functionality
+        function shareProperty(platform) {
+            const url = window.location.href;
+            const title = 'Residencia Moderna Premium - MOGAO Inmobiliaria';
+            const text = 'Mira esta increíble propiedad en Polanco por $4,850,000';
+
+            switch (platform) {
+                case 'whatsapp':
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(url).then(() => {
+                        alert('Enlace copiado al portapapeles');
+                    });
+                    break;
+            }
+        }
+
+        // Contact modal
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+
+            // Simulate form submission
+            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
+            closeContactModal();
+
+            // Reset form
+            event.target.reset();
+        }
+
+        // Quick actions
+        function scheduleVisit() {
+            const message = encodeURIComponent('Hola, me gustaría agendar una visita para la Residencia Moderna Premium en Polanco.');
+            window.open(`https://wa.me/5255550123?text=${message}`, '_blank');
+        }
+
+        function requestInfo() {
+            openContactModal();
+            document.getElementById('contact-interest').value = 'informacion';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('contact-modal');
+            if (event.target === modal) {
+                closeContactModal();
+            }
+        }
+
+        // Keyboard navigation for gallery
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowLeft') {
+                previousImage();
+            } else if (event.key === 'ArrowRight') {
+                nextImage();
+            } else if (event.key === 'Escape') {
+                closeContactModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

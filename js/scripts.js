@@ -224,3 +224,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// toggle menú móvil
+const mobileBtn = document.querySelector('.mobile-menu');
+const navEl = document.querySelector('header nav');
+
+mobileBtn.addEventListener('click', () => {
+    navEl.classList.toggle('open');
+});
+
+// cierra al hacer scroll o al clicar un link
+window.addEventListener('scroll', () => navEl.classList.remove('open'));
+document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => navEl.classList.remove('open'))
+);

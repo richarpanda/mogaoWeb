@@ -141,7 +141,7 @@
                             <i class="fab fa-whatsapp"></i> Asesoría Gratuita por WhatsApp
                         </a>
                     </div>
-                    <div class="wa-trust-badge" style="margin-top: 16px;">
+                    <div class="wa-trust-badge">
                         <span class="dot"></span> Respuesta en minutos · +15 años de experiencia
                     </div>
                 </div>
@@ -152,58 +152,274 @@
         </div>
     </section>
 
+    <!-- Clientes con Escrituras: Prueba Social -->
+    <section class="clients-trust" id="clientes">
+        <div class="container">
+            <h3 class="clients-trust-title">Clientes Que Ya Cumplieron Su Sueño</h3>
+            <p class="clients-trust-subtitle">Familias y personas que ya firmaron sus escrituras de la mano de MOGAO.
+            </p>
+            <div class="clients-carousel">
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Foto anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-viewport" id="clientsCarouselTrack">
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-1.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-2.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-3.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-4.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-5.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-6.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-7.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/clients/cliente-8.jpeg" alt="Cliente MOGAO recibiendo sus escrituras"
+                            loading="lazy">
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Foto siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-dots" id="clientsCarouselDots"></div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section class="services" id="servicios">
         <div class="container">
             <div class="section-header">
                 <div class="section-subtitle">Nuestros Servicios</div>
-                <h2 class="section-title">Soluciones Integrales</h2>
+                <h2 class="section-title">Servicios Inmobiliarios</h2>
                 <p class="section-description">
-                    Ofrecemos un servicio completo que abarca desde la búsqueda de propiedades hasta el asesoramiento
-                    legal,
-                    garantizando una experiencia sin complicaciones.
+                    Desde la compra o venta de tu propiedad hasta la asesoría legal, financiera y de inversión:
+                    todo lo que necesitas en un solo lugar.
                 </p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏠</div>
-                    <h3>Venta de Propiedades</h3>
-                    <p>Maximizamos el valor de tu propiedad con estrategias de marketing personalizadas y una red de
-                        contactos exclusiva.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>Búsqueda Especializada</h3>
-                    <p>Encontramos la propiedad perfecta según tus criterios específicos, presupuesto y estilo de vida
-                        deseado.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚖️</div>
-                    <h3>Asesoría Legal</h3>
-                    <p>Nuestro equipo legal especializado te acompaña en todos los aspectos jurídicos de tu transacción
-                        inmobiliaria.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>Financiamiento</h3>
-                    <p>Te conectamos con las mejores opciones de financiamiento y créditos hipotecarios del mercado.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Valuación Profesional</h3>
-                    <p>Realizamos valuaciones precisas basadas en análisis de mercado y tendencias actuales del sector.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Inversión Inmobiliaria</h3>
-                    <p>Asesoramos en oportunidades de inversión rentables para hacer crecer tu patrimonio inmobiliario.
-                    </p>
+
+            <!-- Vista interactiva: lista de nombres + panel de detalle -->
+            <div class="services-view is-active" data-view-panel="interactive">
+                <div class="services-interactive">
+                    <div class="services-nav" role="tablist" aria-label="Lista de servicios">
+                        <button type="button" class="service-nav-item is-active" data-service-target="service-detail-1"
+                            aria-selected="true">
+                            <span class="service-nav-icon">🏡</span>
+                            <span class="service-nav-title">Compra de propiedades</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-2"
+                            aria-selected="false">
+                            <span class="service-nav-icon">💰</span>
+                            <span class="service-nav-title">Venta de propiedades</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-3"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🔑</span>
+                            <span class="service-nav-title">Renta de inmuebles</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-4"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🏢</span>
+                            <span class="service-nav-title">Administración de inmuebles</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-5"
+                            aria-selected="false">
+                            <span class="service-nav-icon">📈</span>
+                            <span class="service-nav-title">Asesoría para inversionistas</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-6"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🏘️</span>
+                            <span class="service-nav-title">Venta de desarrollos inmobiliarios</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-7"
+                            aria-selected="false">
+                            <span class="service-nav-icon">💳</span>
+                            <span class="service-nav-title">Gestión de créditos hipotecarios</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-8"
+                            aria-selected="false">
+                            <span class="service-nav-icon">📋</span>
+                            <span class="service-nav-title">Asesoría jurídica inmobiliaria</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-9"
+                            aria-selected="false">
+                            <span class="service-nav-icon">📑</span>
+                            <span class="service-nav-title">Regularización de propiedades</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-10"
+                            aria-selected="false">
+                            <span class="service-nav-icon">📐</span>
+                            <span class="service-nav-title">Avalúos inmobiliarios</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-11"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🤝</span>
+                            <span class="service-nav-title">Gestión de compraventas</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-12"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🏠</span>
+                            <span class="service-nav-title">Promoción de inmuebles</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-13"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🌎</span>
+                            <span class="service-nav-title">Atención a mexicanos en el extranjero</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-14"
+                            aria-selected="false">
+                            <span class="service-nav-icon">🏗️</span>
+                            <span class="service-nav-title">Asesoría para terrenos y desarrollos</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-15"
+                            aria-selected="false">
+                            <span class="service-nav-icon">📊</span>
+                            <span class="service-nav-title">Opinión de valor</span>
+                        </button>
+                        <button type="button" class="service-nav-item" data-service-target="service-detail-16"
+                            aria-selected="false">
+                            <span class="service-nav-icon">⭐</span>
+                            <span class="service-nav-title">Acompañamiento personalizado</span>
+                        </button>
+                    </div>
+                    <div class="services-detail">
+                        <div class="service-detail-panel is-active" id="service-detail-1">
+                            <div class="service-detail-icon">🏡</div>
+                            <h3>Compra de propiedades</h3>
+                            <p>Te acompañamos durante todo el proceso para encontrar el inmueble ideal, cuidando tu
+                                inversión y brindándote seguridad jurídica.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-2">
+                            <div class="service-detail-icon">💰</div>
+                            <h3>Venta de propiedades</h3>
+                            <p>Comercializamos tu inmueble mediante estrategias de marketing profesional, fotografía,
+                                redes sociales, portales inmobiliarios y negociación especializada.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-3">
+                            <div class="service-detail-icon">🔑</div>
+                            <h3>Renta de inmuebles</h3>
+                            <p>Encontramos al inquilino adecuado y elaboramos contratos para proteger tu patrimonio.
+                            </p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-4">
+                            <div class="service-detail-icon">🏢</div>
+                            <h3>Administración de inmuebles</h3>
+                            <p>Administramos propiedades para que recibas tus rentas con tranquilidad mientras
+                                nosotros nos encargamos de la operación.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-5">
+                            <div class="service-detail-icon">📈</div>
+                            <h3>Asesoría para inversionistas</h3>
+                            <p>Analizamos oportunidades de inversión con alta plusvalía en terrenos, casas,
+                                departamentos y desarrollos.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-6">
+                            <div class="service-detail-icon">🏘️</div>
+                            <h3>Venta de desarrollos inmobiliarios</h3>
+                            <p>Comercialización de preventas, desarrollos residenciales y proyectos de inversión.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-7">
+                            <div class="service-detail-icon">💳</div>
+                            <h3>Gestión de créditos hipotecarios</h3>
+                            <p>Te ayudamos a elegir y tramitar la mejor opción de financiamiento para tu compra.</p>
+                            <ul class="service-detail-sublist">
+                                <li>Crédito Bancario</li>
+                                <li>Infonavit</li>
+                                <li>Fovissste</li>
+                                <li>Cofinavit</li>
+                                <li>Recursos propios</li>
+                            </ul>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-8">
+                            <div class="service-detail-icon">📋</div>
+                            <h3>Asesoría jurídica inmobiliaria</h3>
+                            <p>Acompañamiento legal durante toda la operación de compraventa para brindar certeza
+                                patrimonial.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-9">
+                            <div class="service-detail-icon">📑</div>
+                            <h3>Regularización de propiedades</h3>
+                            <p>Te apoyamos en todo el proceso de regularización legal de tu propiedad.</p>
+                            <ul class="service-detail-sublist">
+                                <li>Escrituración</li>
+                                <li>Liberación de hipotecas</li>
+                                <li>Cancelación de gravámenes</li>
+                                <li>Actualización documental</li>
+                                <li>Sucesiones (con apoyo de especialistas)</li>
+                            </ul>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-10">
+                            <div class="service-detail-icon">📐</div>
+                            <h3>Avalúos inmobiliarios</h3>
+                            <p>Coordinación de avalúos comerciales y bancarios con peritos certificados.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-11">
+                            <div class="service-detail-icon">🤝</div>
+                            <h3>Gestión de compraventas</h3>
+                            <p>Coordinación integral desde la oferta hasta la firma de escrituras ante notaría.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-12">
+                            <div class="service-detail-icon">🏠</div>
+                            <h3>Promoción de inmuebles</h3>
+                            <p>Creamos campañas profesionales de marketing inmobiliario para vender o rentar más
+                                rápido.</p>
+                            <ul class="service-detail-sublist">
+                                <li>Fotografía inmobiliaria</li>
+                                <li>Video profesional</li>
+                                <li>Drones</li>
+                                <li>Redes sociales</li>
+                                <li>Portales especializados</li>
+                                <li>Estrategia digital</li>
+                            </ul>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-13">
+                            <div class="service-detail-icon">🌎</div>
+                            <h3>Atención a mexicanos en el extranjero</h3>
+                            <p>Acompañamiento para compra, venta o administración de propiedades desde cualquier
+                                parte del mundo.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-14">
+                            <div class="service-detail-icon">🏗️</div>
+                            <h3>Asesoría para terrenos y desarrollos</h3>
+                            <p>Análisis de factibilidad, plusvalía y potencial de inversión.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-15">
+                            <div class="service-detail-icon">📊</div>
+                            <h3>Opinión de valor</h3>
+                            <p>Determinamos el precio más competitivo de tu propiedad con base en estudios de
+                                mercado.</p>
+                        </div>
+                        <div class="service-detail-panel" id="service-detail-16">
+                            <div class="service-detail-icon">⭐</div>
+                            <h3>Acompañamiento personalizado</h3>
+                            <p>Desde la primera cita hasta la entrega del inmueble, siempre tendrás un asesor experto
+                                contigo.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="gallery-cta" style="margin-top: 40px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">🤝</div>
+            
+            <div class="gallery-cta">
+                <div class="gallery-cta-icon">🤝</div>
                 <h3>¿Cuál de estos servicios necesitas?</h3>
                 <p>Cuéntanos tu caso y te asesoramos sin costo por WhatsApp.</p>
                 <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20información%20sobre%20sus%20servicios"
@@ -213,6 +429,64 @@
             </div>
         </div>
     </section>
+
+    <!-- Why Choose MOGAO Section -->
+    <!-- <section class="why-choose" id="por-que-mogao">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Nuestra Ventaja</div>
+                <h2 class="section-title">¿Por Qué Elegir MOGAO?</h2>
+                <p class="section-description">
+                    Respaldamos cada operación con experiencia real, aliados estratégicos y acompañamiento de
+                    principio a fin.
+                </p>
+            </div>
+            <div class="why-choose-grid">
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Atención personalizada</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Seguridad jurídica en cada operación</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Asesoría financiera</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Acompañamiento hasta la escrituración</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Estrategias de marketing premium</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Aliados con notarías, bancos y valuadores</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Experiencia en Estado de México, Hidalgo y CDMX</span>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-circle-check"></i>
+                    <span>Especialistas en patrimonio e inversión</span>
+                </div>
+            </div>
+
+            <div class="gallery-cta">
+                <div class="gallery-cta-icon">🛡️</div>
+                <h3>¿Listo para dar el siguiente paso con toda la tranquilidad?</h3>
+                <p>Habla con un asesor MOGAO y resuelve tus dudas sin compromiso.</p>
+                <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20más%20información"
+                    class="btn-primary" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Quiero Asesoría
+                </a>
+            </div>
+        </div>
+    </section> -->
 
     <!-- Gallery Section -->
     <section class="gallery" id="galeria">
@@ -229,7 +503,7 @@
                 <div class="property-card">
                     <div class="property-image">
                         <img src="./assets/images/properties/penthouse.jpg" alt="Casa Moderna en Tecámac">
-                        <div class="property-badge">En Venta</div>
+                        <div class="property-badge">Vendida</div>
                         <div class="property-overlay">
                             <a href="https://wa.me/525537865554?text=Me%20interesa%20la%20penthouse%20en%20cmdx%20de%20$2,850,000"
                                 class="view-details-btn" target="_blank" rel="noopener">Ver Detalles</a>
@@ -285,6 +559,7 @@
             </div>
 
             <div class="gallery-cta">
+                <div class="gallery-cta-icon">🏡</div>
                 <h3>¿No encontraste lo que buscas?</h3>
                 <p>Tenemos más propiedades disponibles. Contáctanos y te ayudaremos a encontrar tu hogar ideal.</p>
                 <a href="https://wa.me/525537865554?text=Quiero%20ver%20más%20propiedades%20disponibles"
@@ -359,8 +634,8 @@
                     <div class="solution-card">
                         <div class="solution-number">1</div>
                         <h4>Proyectos Accesibles</h4>
-                        <p>Desarrollo de viviendas a precios competitivos, facilitando el acceso a personas de diversos
-                            niveles económicos.</p>
+                        <p>Desarrollo de viviendas a precios competitivos, facilitando el acceso a personas de
+                            diversos niveles económicos.</p>
                     </div>
                     <div class="solution-card">
                         <div class="solution-number">2</div>
@@ -377,8 +652,8 @@
                     <div class="solution-card">
                         <div class="solution-number">4</div>
                         <h4>Transparencia Total</h4>
-                        <p>Información clara y accesible sobre precios, características de las propiedades y tendencias
-                            del mercado.</p>
+                        <p>Información clara y accesible sobre precios, características de las propiedades y
+                            tendencias del mercado.</p>
                     </div>
                 </div>
             </div>
@@ -387,6 +662,12 @@
 
     <!-- Testimonials Section -->
     <section class="testimonials">
+        <!-- Foto de fondo tintada con los colores de marca (no una foto suelta) -->
+        <div class="parallax-image-bg">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80"
+                alt="">
+        </div>
+        <div class="image-overlay"></div>
         <div class="container">
             <div class="section-header">
                 <div class="section-subtitle">Testimonios</div>
@@ -438,8 +719,8 @@
                 </div>
             </div>
 
-            <div class="gallery-cta" style="margin-top: 40px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">⭐</div>
+            <div class="gallery-cta">
+                <div class="gallery-cta-icon">⭐</div>
                 <h3>¿Quieres ser nuestro próximo cliente satisfecho?</h3>
                 <p>Empieza hoy tu proceso de compra, venta o asesoría legal.</p>
                 <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20iniciar%20mi%20proceso%20de%20compra%20o%20venta"
@@ -476,8 +757,7 @@
                         <div class="contact-icon">📞</div>
                         <div>
                             <strong>Teléfono</strong><br>
-                            <a href="tel:+525537865554" style="color: inherit; text-decoration: none;">+52 1 55 3786
-                                5554</a>
+                            <a href="tel:+525537865554" class="contact-link">+52 1 55 3786 5554</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -485,7 +765,7 @@
                         <div>
                             <strong>Email</strong><br>
                             <a href="mailto:mogaopatrimonios@gmail.com"
-                                style="color: inherit; text-decoration: none;">mogaopatrimonios@gmail.com</a>
+                                class="contact-link">mogaopatrimonios@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -496,16 +776,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form"
-                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 18px;">
-                    <i class="fab fa-whatsapp" style="font-size: 3.5rem; color: #25D366;"></i>
-                    <h3 style="margin: 0;">Consulta Gratuita por WhatsApp</h3>
-                    <p style="margin: 0; color: #555;">
+                <div class="contact-form whatsapp-cta-panel">
+                    <i class="fab fa-whatsapp whatsapp-cta-icon"></i>
+                    <h3>Consulta Gratuita por WhatsApp</h3>
+                    <p>
                         Cuéntanos qué propiedad buscas o qué necesitas y te respondemos en minutos, sin
                         compromiso.
                     </p>
                     <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20más%20información"
-                        class="btn-primary" target="_blank" rel="noopener" style="width: 100%; text-align: center;">
+                        class="btn-primary whatsapp-cta-button" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp"></i> Escríbenos Ahora
                     </a>
                 </div>
@@ -522,7 +801,7 @@
                         <img src="assets/images/logo/mogao-logo.png" alt="MOGAO Logo" />
                         <div class="footer-brand-text">MOGAO</div>
                     </div>
-                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">
+                    <p class="footer-tagline">
                         Patrimonios y Asesoría Legal de excelencia.
                         Tu socio de confianza en cada transacción inmobiliaria.
                     </p>
@@ -599,11 +878,11 @@
             var revealEls = [];
             [
                 prepareGroup('.section-header', 0),
-                prepareGroup('.service-card', 90, 450),
                 prepareGroup('.property-card', 90, 450),
                 prepareGroup('.solution-card', 90, 450),
                 prepareGroup('.testimonial', 90, 450),
                 prepareGroup('.stat-card', 100, 300),
+                prepareGroup('.why-choose-item', 70, 350),
                 prepareGroup('.contact-info', 0)
             ].forEach(function (nodeList) {
                 revealEls = revealEls.concat(Array.prototype.slice.call(nodeList));
@@ -677,6 +956,112 @@
                 }
                 window.requestAnimationFrame(step);
             }
+        })();
+    </script>
+
+    <!-- Toggle Vista Interactiva / Vista Lista + navegación del panel interactivo (Servicios) -->
+    <script>
+        (function () {
+            var toggleBtns = document.querySelectorAll('.view-toggle-btn');
+            var viewPanels = document.querySelectorAll('.services-view');
+
+            toggleBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var target = btn.getAttribute('data-view');
+                    toggleBtns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+                    viewPanels.forEach(function (p) {
+                        p.classList.toggle('is-active', p.getAttribute('data-view-panel') === target);
+                    });
+                });
+            });
+
+            var navItems = document.querySelectorAll('.service-nav-item');
+            var detailPanels = document.querySelectorAll('.service-detail-panel');
+
+            navItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    var targetId = item.getAttribute('data-service-target');
+                    navItems.forEach(function (n) {
+                        var active = n === item;
+                        n.classList.toggle('is-active', active);
+                        n.setAttribute('aria-selected', active ? 'true' : 'false');
+                    });
+                    detailPanels.forEach(function (p) {
+                        p.classList.toggle('is-active', p.id === targetId);
+                    });
+                });
+            });
+        })();
+    </script>
+
+    <!-- Carrusel de clientes con escrituras -->
+    <script>
+        (function () {
+            var track = document.getElementById('clientsCarouselTrack');
+            if (!track) return;
+
+            var slides = Array.prototype.slice.call(track.querySelectorAll('.carousel-slide'));
+            var dotsWrap = document.getElementById('clientsCarouselDots');
+            var prevBtn = document.querySelector('.carousel-arrow-prev');
+            var nextBtn = document.querySelector('.carousel-arrow-next');
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            var dots = slides.map(function (slide, i) {
+                var dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                dot.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
+                dot.addEventListener('click', function () {
+                    slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                });
+                dotsWrap.appendChild(dot);
+                return dot;
+            });
+
+            function setActive(index) {
+                dots.forEach(function (d, i) { d.classList.toggle('is-active', i === index); });
+            }
+
+            if ('IntersectionObserver' in window) {
+                var obs = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            setActive(slides.indexOf(entry.target));
+                        }
+                    });
+                }, { root: track, threshold: 0.6 });
+                slides.forEach(function (s) { obs.observe(s); });
+            }
+            setActive(0);
+
+            function move(dir) {
+                var slideWidth = slides[0].getBoundingClientRect().width + 20;
+                track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { move(-1); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { move(1); });
+
+            var autoplayId;
+            function startAutoplay() {
+                if (reduceMotion) return;
+                stopAutoplay();
+                autoplayId = window.setInterval(function () {
+                    var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+                    if (atEnd) {
+                        track.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        move(1);
+                    }
+                }, 4000);
+            }
+            function stopAutoplay() {
+                if (autoplayId) window.clearInterval(autoplayId);
+            }
+
+            track.addEventListener('mouseenter', stopAutoplay);
+            track.addEventListener('mouseleave', startAutoplay);
+            track.addEventListener('touchstart', stopAutoplay, { passive: true });
+            startAutoplay();
         })();
     </script>
 </body>

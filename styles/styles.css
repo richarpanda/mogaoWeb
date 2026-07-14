@@ -1,3 +1,9 @@
+/* ============================================================
+   MOGAO — Nuevos estilos
+   (carrusel de clientes, servicios rediseñados, "Por qué elegir
+   MOGAO" y limpieza de estilos inline sueltos)
+   ============================================================ */
+
 @charset "UTF-8";
 
 * {
@@ -653,65 +659,6 @@ nav {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
-}
-
-.service-card {
-  background: var(--white);
-  padding: 2.5rem;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 10px 30px var(--shadow);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(135deg, var(--accent-gold), #b8941f);
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px var(--shadow);
-}
-
-.service-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--accent-gold), #b8941f);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem;
-  font-size: 2rem;
-  color: var(--white);
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-}
-
-.service-card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-teal);
-  margin-bottom: 1rem;
-}
-
-.service-card p {
-  color: var(--text-light);
-  line-height: 1.7;
 }
 
 /* About Section con Parallax */
@@ -1812,67 +1759,6 @@ footer {
   transform: rotate(45deg);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes heroFloat {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-20px) rotate(1deg);
-  }
-}
-
-@keyframes heroGlow {
-
-  0%,
-  100% {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
-  }
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px);
-  }
-
-  25% {
-    transform: translateY(-20px) translateX(10px);
-  }
-
-  50% {
-    transform: translateY(-10px) translateX(-5px);
-  }
-
-  75% {
-    transform: translateY(-15px) translateX(5px);
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 1200px) {
   .container {
@@ -2081,11 +1967,11 @@ body.has-sticky-bar {
            (cada palabra en su propia línea). Se fuerza una sola columna en pantallas chicas. */
 @media (max-width: 640px) {
 
-  .services-grid,
   .solutions-grid,
   .testimonials-grid,
   .stats-grid,
-  .gallery-grid {
+  .gallery-grid,
+  .why-choose-grid {
     grid-template-columns: 1fr !important;
   }
 }
@@ -2097,25 +1983,6 @@ body.has-sticky-bar {
   .whatsapp-button {
     display: none;
   }
-}
-
-/* Pulso sutil en el botón flotante para atraer el ojo sin distraer */
-@keyframes wa-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
-  }
-
-  70% {
-    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-}
-
-.whatsapp-button {
-  animation: wa-pulse 2.8s ease-out infinite;
 }
 
 /* Badge de confianza junto a los CTAs principales */
@@ -2195,4 +2062,589 @@ body.has-sticky-bar {
   .wa-trust-badge .dot {
     animation: none;
   }
+}
+
+/* ============================================================
+   HOMOLOGACIÓN — Servicios, "Por qué elegir MOGAO" y carrusel
+   de clientes, usando las variables y el lenguaje visual ya
+   existentes (teal + dorado, Playfair Display).
+
+   Limpieza hecha en este mismo archivo al integrar esto:
+   - Se borró un bloque duplicado de .services-grid/.service-card
+     que estaba repetido dos veces en el CSS original.
+   - Se quitó una animación "wa-pulse" que había agregado antes
+     y que competía con el @keyframes pulse que ya tenías en
+     ".whatsapp-button" (dejaba la tuya sin efecto). Se conserva
+     únicamente tu "pulse" original.
+   ============================================================ */
+
+/* --- Servicios: pasaron de 16 cards en grid (se veía saturado y
+   además el acordeón estiraba a sus vecinas de fila) a una lista
+   elegante en dos columnas, sin cajas ni sombras: ícono + texto
+   separados por una línea dorada delgada. Cada fila es
+   independiente de las demás, así que el acordeón ya no rompe
+   el layout. --- */
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 4rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 900px) {
+  .services-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.services-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-row,
+.service-row-expandable {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.services-column .service-row:last-child,
+.services-column .service-row-expandable:last-child {
+  border-bottom: none;
+}
+
+.service-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.5rem 0;
+}
+
+.service-row-expandable summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.service-row-expandable summary::-webkit-details-marker {
+  display: none;
+}
+
+.service-row-expandable summary::marker {
+  content: "";
+}
+
+.service-row-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  background: transparent;
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.service-row:hover .service-row-icon,
+.service-row-expandable summary:hover .service-row-icon {
+  background: var(--accent-gold);
+  color: var(--white);
+}
+
+.service-row-body h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+  margin-bottom: 0.35rem;
+}
+
+.service-row-body p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+.service-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+}
+
+.service-toggle-label i {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+.service-row-expandable[open] .service-toggle-label i {
+  transform: rotate(180deg);
+}
+
+.service-row-expandable .service-sublist {
+  margin: 0 0 1.5rem calc(44px + 1.1rem);
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.service-row-expandable .service-sublist li {
+  margin-bottom: 0.3rem;
+}
+
+/* --- Toggle para comparar Vista Interactiva vs Vista Lista (temporal,
+   mientras se decide cuál se queda) --- */
+.services-view-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.view-toggle-btn {
+  background: transparent;
+  border: 1.5px solid var(--accent-gold);
+  color: var(--primary-teal);
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.view-toggle-btn.is-active {
+  background: var(--accent-gold);
+  color: var(--white);
+}
+
+.services-view {
+  display: none;
+}
+
+.services-view.is-active {
+  display: block;
+}
+
+/* --- Vista interactiva: lista de nombres a la izquierda + panel de
+   detalle a la derecha (se actualiza al hacer clic en un nombre) --- */
+.services-interactive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .services-interactive {
+    grid-template-columns: 340px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+.services-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.9rem 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.services-nav .service-nav-item:last-child {
+  border-bottom: none;
+}
+
+.service-nav-item:hover {
+  background: rgba(212, 175, 55, 0.06);
+  padding-left: 0.9rem;
+}
+
+.service-nav-item.is-active {
+  background: rgba(212, 175, 55, 0.1);
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.service-nav-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--accent-gold);
+  color: var(--accent-gold);
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.service-nav-item.is-active .service-nav-icon,
+.service-nav-item:hover .service-nav-icon {
+  background: var(--accent-gold);
+  color: var(--white);
+}
+
+.service-nav-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--primary-teal);
+}
+
+.services-detail {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px var(--shadow);
+  min-height: 320px;
+}
+
+@media (min-width: 900px) {
+  .services-detail {
+    position: sticky;
+    top: 110px;
+    padding: 3rem;
+  }
+}
+
+.service-detail-panel {
+  display: none;
+}
+
+.service-detail-panel.is-active {
+  display: block;
+}
+
+.service-detail-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
+.service-detail-panel h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: var(--primary-teal);
+  margin-bottom: 1rem;
+}
+
+.service-detail-panel p {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.service-detail-sublist {
+  margin-top: 1.25rem;
+  padding-left: 1.2rem;
+  color: var(--text-light);
+  font-size: 0.92rem;
+}
+
+.service-detail-sublist li {
+  margin-bottom: 0.4rem;
+}
+
+/* Ícono de los bloques de CTA (gallery-cta), mismo tratamiento
+   que .problem-icon para que se vea homologado */
+.gallery-cta-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-gold);
+}
+
+/* ============================================================
+   Sección "¿Por Qué Elegir MOGAO?"
+   ============================================================ */
+.why-choose {
+  padding: 6rem 0;
+  background: var(--cream);
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.25rem;
+}
+
+.why-choose-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--white);
+  border-radius: 15px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 10px 30px var(--shadow);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.why-choose-item i {
+  color: var(--accent-gold);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Carrusel de clientes con escrituras
+   ============================================================ */
+.clients-trust {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.clients-trust-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-teal);
+  margin: 0 0 0.5rem;
+}
+
+.clients-trust-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1rem;
+  margin: 0 0 2rem;
+}
+
+.clients-carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carousel-viewport {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px;
+}
+
+.carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .carousel-slide {
+    width: 300px;
+    height: 360px;
+  }
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary-teal);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--secondary-teal);
+  transform: scale(1.08);
+}
+
+@media (max-width: 600px) {
+  .carousel-arrow {
+    display: none;
+  }
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #d8d8d8;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-dot.is-active {
+  background: var(--accent-gold);
+  transform: scale(1.3);
+}
+
+/* ============================================================
+   Panel de WhatsApp en Contacto (reemplaza el <form>; reutiliza
+   la caja ya existente de .contact-form — fondo, padding y
+   border-radius — solo cambia a layout centrado en columna)
+   ============================================================ */
+.whatsapp-cta-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.1rem;
+}
+
+.whatsapp-cta-panel .whatsapp-cta-icon {
+  font-size: 3.5rem;
+  color: #25d366;
+  /* verde de WhatsApp: se deja a propósito, es la marca del canal */
+}
+
+.whatsapp-cta-panel h3 {
+  margin: 0;
+}
+
+.whatsapp-cta-panel p {
+  margin: 0;
+  color: var(--text-light);
+}
+
+.whatsapp-cta-panel .whatsapp-cta-button {
+  width: 100%;
+  text-align: center;
+}
+
+/* --- Links de contacto (tel: / mailto:) --- */
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Texto del footer --- */
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   MÁS PROFUNDIDAD VISUAL — el sitio se sentía "plano" porque
+   --cream y --white son casi el mismo tono y casi no había
+   fotografía fuera del Hero/About. Esto agrega, sin salirse de
+   la paleta: (1) textura sutil en las secciones crema, (2) un
+   bloque de acento dorado fuerte para romper la monotonía, y
+   (3) una foto tintada (no una foto suelta) en Testimonios.
+   ============================================================ */
+
+/* (1) Textura sutil en las secciones crema: dos manchas de color
+   muy tenues (dorado y teal) en vez de un color sólido plano.
+   Sobrescribe solo la propiedad "background", el resto de cada
+   regla (padding, position, etc.) sigue igual. */
+.services {
+  background: radial-gradient(circle at 12% 15%, rgba(212, 175, 55, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(26, 74, 74, 0.05) 0%, transparent 45%),
+    var(--cream);
+}
+
+.problem-solutions {
+  background: radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(26, 74, 74, 0.05) 0%, transparent 45%),
+    var(--cream);
+}
+
+/* (2) Bloque dorado fuerte: "Por Qué Elegir MOGAO" pasa de crema
+   a un degradado dorado (el mismo que ya usan tus botones), para
+   que se sienta como un capítulo distinto al hacer scroll. Las
+   cards blancas de adentro ahora resaltan más sobre el dorado. */
+.why-choose {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #b8941f 100%);
+}
+
+.why-choose .section-subtitle {
+  color: rgba(26, 74, 74, 0.75);
+}
+
+.why-choose .section-title {
+  color: var(--primary-teal);
+}
+
+.why-choose .section-description {
+  color: rgba(26, 74, 74, 0.85);
+}
+
+/* (3) Testimonios: foto real de fondo, pero tintada con los
+   colores de marca (crema + dorado muy translúcidos encima) en
+   vez de mostrarse como una foto suelta y con color propio. */
+.testimonials {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials .container {
+  position: relative;
+  z-index: 3;
+}
+
+.testimonials .parallax-image-bg img {
+  filter: saturate(0.55) brightness(1.05);
+}
+
+.testimonials .image-overlay {
+  background: linear-gradient(135deg, rgba(250, 248, 243, 0.99) 0%, rgba(244, 228, 166, 0.80) 100%);
 }

@@ -1,9 +1,3 @@
-/* ============================================================
-   MOGAO — Nuevos estilos
-   (carrusel de clientes, servicios rediseñados, "Por qué elegir
-   MOGAO" y limpieza de estilos inline sueltos)
-   ============================================================ */
-
 @charset "UTF-8";
 
 * {
@@ -1976,6 +1970,35 @@ body.has-sticky-bar {
   }
 }
 
+/* ============================================================
+   Servicios: foto de fondo a opacidad 0.8 — y nada más. No se
+   toca el tono del fondo que ya tenía la sección (crema +
+   mancha dorada del ::before): la foto solo se agrega encima,
+   transparente, dejando ver ese mismo fondo por debajo.
+   ============================================================ */
+.services .container {
+  position: relative;
+  z-index: 2;
+}
+
+.services-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.services-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* En mobile el botón flotante redondo y la barra sticky se encimaban en el mismo
            espacio; se deja la barra sticky (siempre visible, en todos los tamaños) y solo
            se oculta el botón redondo en mobile para no duplicar el mismo CTA ahí. */
@@ -2078,16 +2101,20 @@ body.has-sticky-bar {
      únicamente tu "pulse" original.
    ============================================================ */
 
-/* --- Servicios: pasaron de 16 cards en grid (se veía saturado y
-   además el acordeón estiraba a sus vecinas de fila) a una lista
-   elegante en dos columnas, sin cajas ni sombras: ícono + texto
-   separados por una línea dorada delgada. Cada fila es
-   independiente de las demás, así que el acordeón ya no rompe
-   el layout. --- */
+/* --- Servicios: los 16 son acordeón real (antes solo 3 se
+   expandían y las otras 13 ya mostraban el texto completo, por
+   eso se sentía "muerto" hacer clic en la mayoría). Colapsado se
+   ve solo ícono + título; al hacer clic se revela la descripción
+   (y la sub-lista en las 3 que la tienen).
+
+   Como el fondo de la sección ahora es una foto muy transparente,
+   cada fila lleva un fondo tipo "vidrio esmerilado" (blur + blanco
+   translúcido) para que el texto no se pierda contra la foto. --- */
 .services-list {
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 4rem;
+  column-gap: 2.5rem;
+  row-gap: 12px;
   margin-top: 1rem;
 }
 
@@ -2100,30 +2127,23 @@ body.has-sticky-bar {
 .services-column {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
-.service-row,
 .service-row-expandable {
-  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-}
-
-.services-column .service-row:last-child,
-.services-column .service-row-expandable:last-child {
-  border-bottom: none;
-}
-
-.service-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.1rem;
-  padding: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(26, 74, 74, 0.06);
 }
 
 .service-row-expandable summary {
   display: flex;
-  align-items: flex-start;
-  gap: 1.1rem;
-  padding: 1.5rem 0;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
   cursor: pointer;
   list-style: none;
   transition: color 0.2s ease;
@@ -2138,8 +2158,8 @@ body.has-sticky-bar {
 }
 
 .service-row-icon {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1.5px solid var(--accent-gold);
   background: transparent;
@@ -2147,234 +2167,56 @@ body.has-sticky-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   flex-shrink: 0;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-.service-row:hover .service-row-icon,
 .service-row-expandable summary:hover .service-row-icon {
   background: var(--accent-gold);
   color: var(--white);
 }
 
-.service-row-body h4 {
+.service-row-expandable summary h4 {
+  flex: 1;
   font-family: "Playfair Display", serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--primary-teal);
-  margin-bottom: 0.35rem;
+  margin: 0;
 }
 
-.service-row-body p {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  line-height: 1.55;
+.service-row-chevron {
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
 }
 
-.service-toggle-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 0.6rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--primary-teal);
-}
-
-.service-toggle-label i {
-  font-size: 0.7rem;
-  transition: transform 0.2s ease;
-}
-
-.service-row-expandable[open] .service-toggle-label i {
+.service-row-expandable[open] .service-row-chevron {
   transform: rotate(180deg);
 }
 
+.service-row-content {
+  padding: 0 1.2rem 1.2rem calc(1.2rem + 40px + 1rem);
+}
+
+.service-row-content p {
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
 .service-row-expandable .service-sublist {
-  margin: 0 0 1.5rem calc(44px + 1.1rem);
+  margin: 0.4rem 0 0;
   padding-left: 1.1rem;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 .service-row-expandable .service-sublist li {
   margin-bottom: 0.3rem;
-}
-
-/* --- Toggle para comparar Vista Interactiva vs Vista Lista (temporal,
-   mientras se decide cuál se queda) --- */
-.services-view-toggle {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.view-toggle-btn {
-  background: transparent;
-  border: 1.5px solid var(--accent-gold);
-  color: var(--primary-teal);
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: "Inter", sans-serif;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-.view-toggle-btn.is-active {
-  background: var(--accent-gold);
-  color: var(--white);
-}
-
-.services-view {
-  display: none;
-}
-
-.services-view.is-active {
-  display: block;
-}
-
-/* --- Vista interactiva: lista de nombres a la izquierda + panel de
-   detalle a la derecha (se actualiza al hacer clic en un nombre) --- */
-.services-interactive {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 900px) {
-  .services-interactive {
-    grid-template-columns: 340px 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-}
-
-.services-nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.service-nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 0.9rem 0.5rem;
-  text-align: left;
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
-  transition: background 0.2s ease, padding-left 0.2s ease;
-}
-
-.services-nav .service-nav-item:last-child {
-  border-bottom: none;
-}
-
-.service-nav-item:hover {
-  background: rgba(212, 175, 55, 0.06);
-  padding-left: 0.9rem;
-}
-
-.service-nav-item.is-active {
-  background: rgba(212, 175, 55, 0.1);
-  padding-left: 0.9rem;
-  border-left: 3px solid var(--accent-gold);
-}
-
-.service-nav-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-  border: 1.5px solid var(--accent-gold);
-  color: var(--accent-gold);
-  background: transparent;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.service-nav-item.is-active .service-nav-icon,
-.service-nav-item:hover .service-nav-icon {
-  background: var(--accent-gold);
-  color: var(--white);
-}
-
-.service-nav-title {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--primary-teal);
-}
-
-.services-detail {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 30px var(--shadow);
-  min-height: 320px;
-}
-
-@media (min-width: 900px) {
-  .services-detail {
-    position: sticky;
-    top: 110px;
-    padding: 3rem;
-  }
-}
-
-.service-detail-panel {
-  display: none;
-}
-
-.service-detail-panel.is-active {
-  display: block;
-}
-
-.service-detail-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-gold), #b8941f);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.7rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-}
-
-.service-detail-panel h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
-  color: var(--primary-teal);
-  margin-bottom: 1rem;
-}
-
-.service-detail-panel p {
-  color: var(--text-light);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.service-detail-sublist {
-  margin-top: 1.25rem;
-  padding-left: 1.2rem;
-  color: var(--text-light);
-  font-size: 0.92rem;
-}
-
-.service-detail-sublist li {
-  margin-bottom: 0.4rem;
 }
 
 /* Ícono de los bloques de CTA (gallery-cta), mismo tratamiento
@@ -2647,4 +2489,310 @@ body.has-sticky-bar {
 
 .testimonials .image-overlay {
   background: linear-gradient(135deg, rgba(250, 248, 243, 0.99) 0%, rgba(244, 228, 166, 0.80) 100%);
+}
+
+/* ============================================================
+   Prueba 2 — en vez de difuminar la costura, se quita la causa:
+   todas las secciones "neutras" (Servicios, Problema/Soluciones,
+   además de Clientes/Galería/Contacto que ya eran blancas) pasan
+   a un mismo blanco, y se acercan un poco entre sí bajando su
+   padding vertical. Hero y Nosotros (verde/teal) NO se tocan.
+   ============================================================ */
+.services,
+.problem-solutions {
+  background: var(--white);
+}
+
+.clients-trust,
+.services,
+.gallery,
+.problem-solutions,
+.testimonials,
+.contact {
+  padding: 4rem 0;
+}
+
+/* ============================================================
+   COMPARATIVA TEMPORAL — 4 formas de mostrar los 16 servicios.
+   Todo bajo el prefijo "svcv-" para no chocar con ninguna otra
+   regla del sitio. Cuando se elija una, se borra este bloque
+   completo salvo la variante ganadora.
+   ============================================================ */
+
+.svcv-switch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 0 2.5rem;
+}
+
+.svcv-switch-btn {
+  background: transparent;
+  border: 1.5px solid var(--accent-gold);
+  color: var(--primary-teal);
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.svcv-switch-btn.is-active {
+  background: var(--accent-gold);
+  color: var(--white);
+}
+
+.svcv-variant {
+  display: none;
+}
+
+.svcv-variant.is-active {
+  display: block;
+}
+
+.svcv-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svcv-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .svcv-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.svcv-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 1. Acordeón nativo --- */
+.svcv-acc-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.svcv-acc-item summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.svcv-acc-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.svcv-acc-item summary::marker {
+  content: "";
+}
+
+.svcv-acc-item .svcv-title {
+  flex: 1;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+}
+
+.svcv-chevron {
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.svcv-acc-item[open] .svcv-chevron,
+.svcv-cat[open] .svcv-chevron {
+  transform: rotate(180deg);
+}
+
+.svcv-acc-body {
+  padding: 0 0 1.2rem calc(40px + 1rem);
+}
+
+.svcv-acc-body p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.svcv-sublist {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.svcv-sublist li {
+  margin-bottom: 0.3rem;
+}
+
+/* --- 2. Lista minimalista (siempre visible) --- */
+.svcv-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.svcv-col .svcv-list-item:last-child {
+  border-bottom: none;
+}
+
+.svcv-list-item h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+  margin: 0 0 0.3rem;
+}
+
+.svcv-list-item p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- 3. Categorías agrupadas --- */
+.svcv-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.svcv-cat {
+  background: var(--white);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 14px;
+  padding: 0 1.5rem;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.svcv-cat summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.svcv-cat summary::-webkit-details-marker {
+  display: none;
+}
+
+.svcv-cat summary::marker {
+  content: "";
+}
+
+.svcv-cat .svcv-title {
+  flex: 1;
+  font-family: "Playfair Display", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+}
+
+.svcv-cat-list {
+  list-style: none;
+  padding: 0 0 1.3rem calc(40px + 1rem);
+  margin: 0;
+}
+
+.svcv-cat-list li {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.svcv-cat-list strong {
+  color: var(--primary-teal);
+}
+
+/* --- 4. Bento --- */
+.svcv-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.svcv-bento-item {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.svcv-bento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px var(--shadow);
+}
+
+.svcv-bento-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  font-size: 1.5rem;
+}
+
+.svcv-bento-item h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-teal);
+  margin: 0 0 0.6rem;
+}
+
+.svcv-bento-item p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.svcv-bento-item:hover p {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.2rem;
+}
+
+@media (hover: none) {
+  .svcv-bento-item p {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.2rem;
+  }
 }

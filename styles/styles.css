@@ -2077,6 +2077,19 @@ body.has-sticky-bar {
   }
 }
 
+/* Los grids de tarjetas se quedaban en 2 columnas en mobile, aplastando el texto
+           (cada palabra en su propia línea). Se fuerza una sola columna en pantallas chicas. */
+@media (max-width: 640px) {
+
+  .services-grid,
+  .solutions-grid,
+  .testimonials-grid,
+  .stats-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* En mobile el botón flotante redondo y la barra sticky se encimaban en el mismo
            espacio; se deja la barra sticky (siempre visible, en todos los tamaños) y solo
            se oculta el botón redondo en mobile para no duplicar el mismo CTA ahí. */

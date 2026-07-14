@@ -1,3 +1,7 @@
+// Anio actual
+const anioActual = new Date().getFullYear();
+document.getElementById('anioactual').textContent = `© ${anioActual} MOGAO - Patrimonios y Asesoría Legal. Todos los derechos reservados.`;
+
 // Header scroll effect mejorado
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');

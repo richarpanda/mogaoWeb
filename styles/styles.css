@@ -356,7 +356,7 @@ nav {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .section-subtitle {
@@ -365,7 +365,7 @@ nav {
   font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .section-title {
@@ -453,6 +453,19 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2.5rem;
   margin-bottom: 4rem;
+}
+
+/* La galería usaba ".gallery-grid" en el HTML pero esa clase nunca tuvo su
+   propio "display: grid" (solo existía dentro de media queries para tablet/
+   mobile) — por eso con 1 sola card se veía bien por casualidad, pero con 3
+   cada una ocupaba el 100% del ancho apilada. Esto la vuelve una grilla real:
+   3 columnas en desktop ancho, se acomoda sola en pantallas medianas, y las
+   media queries de abajo ya la fuerzan a 2 y luego 1 columna en tablet/mobile. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .property-card {
@@ -1549,7 +1562,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120%;
+  height: 100%;
   overflow: hidden;
   z-index: 1;
   will-change: transform;
@@ -2503,13 +2516,16 @@ body.has-sticky-bar {
   background: var(--white);
 }
 
-.clients-trust,
-.services,
-.gallery,
 .problem-solutions,
 .testimonials,
 .contact {
   padding: 4rem 0;
+}
+
+.clients-trust,
+.services,
+.gallery {
+  padding: 2.5rem 0;
 }
 
 /* ============================================================
@@ -2795,4 +2811,27 @@ body.has-sticky-bar {
     opacity: 1;
     margin-top: 0.2rem;
   }
+}
+
+/* ============================================================
+   Tags de ciudad/zona para propiedades tipo "colección" (VINTE
+   en varias ciudades, departamentos CDMX en varias zonas) que no
+   tienen un precio ni recámaras/baños/m² como una casa puntual.
+   Reemplaza a ".property-features" solo en esas cards.
+   ============================================================ */
+.property-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.property-tag {
+  background: var(--cream);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--primary-teal);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
 }

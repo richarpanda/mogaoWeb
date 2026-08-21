@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="MOGAO - Patrimonios y Asesoría Legal">
+    <meta name="description" content="Explora todas las propiedades disponibles de MOGAO. Casas, departamentos y más en las mejores ubicaciones de México.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mogaoinmobiliaria.com/propiedades.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Propiedades Disponibles | MOGAO">
+    <meta property="og:description" content="Explora todas las propiedades disponibles de MOGAO.">
+    <meta property="og:url" content="https://www.mogaoinmobiliaria.com/propiedades.html">
+    <meta property="og:image" content="https://www.mogaoinmobiliaria.com/assets/images/mogao-verde.jpg">
+    <meta property="og:site_name" content="MOGAO">
+    <title>Propiedades Disponibles | MOGAO</title>
+    <link rel="icon" href="assets/images/mogao-logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body class="has-sticky-bar">
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="assets/images/logo/mogao-logo.png" alt="MOGAO Logo" />
+                <div class="logo-text">MOGAO</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="propiedades.html" class="nav-active">Propiedades</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.facebook.com/Mogaopatrimonios" target="_blank" rel="noopener" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/mogao_inmobiliaria/" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20más%20informacion" target="_blank"
+                    rel="noopener" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <a href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20más%20informacion" class="cta-button"
+                target="_blank" rel="noopener">Consulta Gratuita</a>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <p class="section-subtitle">Catálogo completo</p>
+            <h1 class="page-banner-title">Propiedades <span class="accent">Disponibles</span></h1>
+            <p class="page-banner-desc">Encuentra tu hogar ideal entre nuestra selección de propiedades exclusivas.</p>
+        </div>
+    </section>
+
+    <!-- Catalog -->
+    <section class="catalog-section">
+        <div class="container">
+
+            <!-- Filters -->
+            <div class="catalog-filters">
+                <div class="catalog-search-wrap">
+                    <i class="fas fa-search catalog-search-icon"></i>
+                    <input type="text" id="catalog-search" placeholder="Buscar por nombre, ciudad o descripción…" />
+                </div>
+                <select id="catalog-tipo">
+                    <option value="">Todos los tipos</option>
+                </select>
+                <select id="catalog-ciudad">
+                    <option value="">Todas las ciudades</option>
+                </select>
+            </div>
+
+            <div class="catalog-meta" id="catalog-meta"></div>
+
+            <!-- Grid -->
+            <div class="gallery-grid" id="catalog-grid"></div>
+
+            <!-- Pagination -->
+            <div class="catalog-pagination" id="catalog-pagination"></div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo/mogao-logo.png" alt="MOGAO Logo" />
+                        <div class="footer-brand-text">MOGAO</div>
+                    </div>
+                    <p class="footer-tagline">
+                        Patrimonios y Asesoría Legal de excelencia.
+                        Tu socio de confianza en cada transacción inmobiliaria.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="index.html#servicios">Venta de Propiedades</a></li>
+                        <li><a href="index.html#servicios">Compra de Propiedades</a></li>
+                        <li><a href="index.html#servicios">Renta de Propiedades</a></li>
+                        <li><a href="index.html#servicios">Asesoría Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="anioactual"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky WhatsApp Bar -->
+    <div class="whatsapp-sticky-bar" id="whatsappStickyBar">
+        <p>¿Tienes dudas sobre una propiedad? Escríbenos ahora</p>
+        <a class="sticky-cta" target="_blank" rel="noopener"
+            href="https://wa.me/525537865554?text=¡Hola%20MOGAO!%20Quiero%20información%20sobre%20una%20propiedad">
+            <i class="fab fa-whatsapp"></i> Chatea con nosotros
+        </a>
+        <button class="close-bar" aria-label="Cerrar barra"
+            onclick="document.getElementById('whatsappStickyBar').style.display='none'; document.body.classList.remove('has-sticky-bar');">✕</button>
+    </div>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/catalog.js"></script>
+    <script>
+        var anioActual = new Date().getFullYear();
+        document.getElementById('anioactual').textContent = '© ' + anioActual + ' MOGAO - Patrimonios y Asesoría Legal. Todos los derechos reservados.';
+    </script>
+</body>
+</html>

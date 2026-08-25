@@ -34,12 +34,15 @@
             : '<div class="property-no-image"><i class="fas fa-home"></i></div>';
         var tipoNombre = prop.tipos_propiedad && prop.tipos_propiedad.nombre ? prop.tipos_propiedad.nombre : null;
         var tipoHtml = tipoNombre ? '<span class="property-tag">' + tipoNombre + '</span>' : '';
+        var statusLabels = { disponible: 'Disponible', vendida: 'Vendida', rentada: 'Rentada', en_proceso: 'En proceso' };
+        var statusLabel = statusLabels[prop.estatus] || prop.estatus || 'Disponible';
+        var badgeClass = 'property-badge property-badge--' + (prop.estatus || 'disponible');
 
         return '<div class="property-card">' +
             '<a href="' + detailHref + '" class="property-card-link" aria-label="Ver ' + prop.titulo + '">' +
             '<div class="property-image">' +
                 imgHtml +
-                '<div class="property-badge">Disponible</div>' +
+                '<div class="' + badgeClass + '">' + statusLabel + '</div>' +
                 '<div class="property-overlay">' +
                     '<span class="view-details-btn">Ver Detalles</span>' +
                 '</div>' +
@@ -126,10 +129,13 @@
 
     // ── Filters ───────────────────────────────────────────────────
 
+    var STATUS_LABELS = { disponible: 'Disponible', vendida: 'Vendida', rentada: 'Rentada', en_proceso: 'En proceso' };
+
     function applyFilters() {
         var q = (document.getElementById('catalog-search').value || '').trim().toLowerCase();
         var tipo = document.getElementById('catalog-tipo').value;
         var ciudad = document.getElementById('catalog-ciudad').value;
+        var estatus = document.getElementById('catalog-estatus').value;
 
         filtered = allProperties.filter(function (p) {
             var tipoNom = p.tipos_propiedad && p.tipos_propiedad.nombre ? p.tipos_propiedad.nombre : null;
@@ -137,7 +143,8 @@
                 .filter(Boolean).some(function (f) { return f.toLowerCase().includes(q); });
             var matchTipo = !tipo || tipoNom === tipo;
             var matchCiudad = !ciudad || p.ciudad === ciudad;
-            return matchQ && matchTipo && matchCiudad;
+            var matchEstatus = !estatus || p.estatus === estatus;
+            return matchQ && matchTipo && matchCiudad && matchEstatus;
         });
         currentPage = 1;
         renderGrid();
@@ -146,6 +153,7 @@
     function populateSelects() {
         var tipos = Array.from(new Set(allProperties.map(function (p) { return p.tipos_propiedad && p.tipos_propiedad.nombre ? p.tipos_propiedad.nombre : null; }).filter(Boolean))).sort();
         var ciudades = Array.from(new Set(allProperties.map(function (p) { return p.ciudad; }).filter(Boolean))).sort();
+        var estatuses = Array.from(new Set(allProperties.map(function (p) { return p.estatus; }).filter(Boolean))).sort();
 
         var tipoSel = document.getElementById('catalog-tipo');
         tipos.forEach(function (t) {
@@ -160,6 +168,13 @@
             opt.value = c; opt.textContent = c;
             ciudadSel.appendChild(opt);
         });
+
+        var estatusSel = document.getElementById('catalog-estatus');
+        estatuses.forEach(function (e) {
+            var opt = document.createElement('option');
+            opt.value = e; opt.textContent = STATUS_LABELS[e] || e;
+            estatusSel.appendChild(opt);
+        });
     }
 
     // ── Init ──────────────────────────────────────────────────────
@@ -170,7 +185,7 @@
 
         grid.innerHTML = buildSkeleton();
 
-        supabaseGet('propiedades?estatus=eq.disponible&select=id,titulo,descripcion,precio,ciudad,direccion,tipo_id,tipos_propiedad(nombre)&order=created_at.desc')
+        supabaseGet('propiedades?select=id,titulo,descripcion,precio,ciudad,direccion,estatus,tipo_id,tipos_propiedad(nombre)&order=created_at.desc')
             .then(function (props) {
                 allProperties = props;
                 if (!props.length) {
@@ -191,6 +206,7 @@
                 document.getElementById('catalog-search').addEventListener('input', applyFilters);
                 document.getElementById('catalog-tipo').addEventListener('change', applyFilters);
                 document.getElementById('catalog-ciudad').addEventListener('change', applyFilters);
+                document.getElementById('catalog-estatus').addEventListener('change', applyFilters);
 
                 renderGrid();
             })

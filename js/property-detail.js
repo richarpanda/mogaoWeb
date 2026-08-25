@@ -146,9 +146,9 @@
         html += '<div class="pd-cta-price">' + formatPrice(prop.precio) + '</div>';
         html += '<p class="pd-cta-label">¿Te interesa esta propiedad?</p>';
         html += '<a href="' + waHref + '" class="btn-primary pd-cta-btn" target="_blank" rel="noopener">';
-        html += '<i class="fab fa-whatsapp"></i> Consultar por WhatsApp';
+        html += '<i class="fab fa-whatsapp"></i> Consultar por WhatsApp' ;
         html += '</a>';
-        html += '<ul class="pd-cta-perks">';
+        html += '<br /><br /><ul class="pd-cta-perks">';
         html += '<li><i class="fas fa-check"></i> Respuesta en menos de 1 hora</li>';
         html += '<li><i class="fas fa-check"></i> Asesoría gratuita</li>';
         html += '<li><i class="fas fa-check"></i> Sin compromiso</li>';

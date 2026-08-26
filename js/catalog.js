@@ -1,8 +1,6 @@
 (function () {
-    var SUPABASE_URL = 'https://jrlzrrgfseykqkfpqvfd.supabase.co';
-    var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpybHpycmdmc2V5a3FrZnBxdmZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MjY3ODksImV4cCI6MjA5OTMwMjc4OX0.ruGVP8C6ura9scteHXDO7A3Bx-gA85XJ8gdtVU8GT1k';
+    var API_URL = 'https://jrlzrrgfseykqkfpqvfd.supabase.co/functions/v1/mogao-properties';
     var WA_NUMBER = '525537865554';
-    var HEADERS = { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY };
     var PAGE_SIZE = 9;
 
     var allProperties = [];   // full dataset
@@ -10,9 +8,9 @@
     var filtered = [];        // after filters
     var currentPage = 1;
 
-    function supabaseGet(path) {
-        return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: HEADERS }).then(function (r) {
-            if (!r.ok) throw new Error('Supabase ' + r.status);
+    function fetchProperties() {
+        return fetch(API_URL).then(function (r) {
+            if (!r.ok) throw new Error('Error ' + r.status);
             return r.json();
         });
     }
@@ -55,7 +53,7 @@
                 '</h3>' +
                 '<p class="property-location"><i class="fas fa-map-marker-alt"></i> ' + location + '</p>' +
                 (tipoHtml ? '<div class="property-tags">' + tipoHtml + '</div>' : '') +
-                (prop.descripcion ? '<div class="property-description"><p>' + prop.descripcion + '</p></div>' : '') +
+                (prop.descripcion ? '<div class="property-description">' + prop.descripcion + '</div>' : '') +
                 '<div class="property-actions">' +
                     '<a href="' + detailHref + '" class="btn-secondary">Ver detalles</a>' +
                     '<a href="' + waHref + '" class="btn-primary" target="_blank" rel="noopener">' +
@@ -185,18 +183,14 @@
 
         grid.innerHTML = buildSkeleton();
 
-        supabaseGet('propiedades?select=id,titulo,descripcion,precio,ciudad,direccion,estatus,tipo_id,tipos_propiedad(nombre)&order=created_at.desc')
-            .then(function (props) {
-                allProperties = props;
-                if (!props.length) {
+        fetchProperties()
+            .then(function (data) {
+                allProperties = data.props || [];
+                var fotos = data.fotos || [];
+                if (!allProperties.length) {
                     grid.innerHTML = '<div class="gallery-empty"><i class="fas fa-home"></i><p>Próximamente nuevas propiedades disponibles.</p></div>';
                     return null;
                 }
-                var ids = props.map(function (p) { return p.id; }).join(',');
-                return supabaseGet('propiedad_fotos?propiedad_id=in.(' + ids + ')&select=propiedad_id,url,orden&order=orden.asc');
-            })
-            .then(function (fotos) {
-                if (!fotos) return;
                 fotos.forEach(function (f) {
                     if (!photoMap[f.propiedad_id]) photoMap[f.propiedad_id] = f.url;
                 });

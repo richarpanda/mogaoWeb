@@ -619,9 +619,6 @@ nav {
 
 .property-description {
   margin-bottom: 1.5rem;
-}
-
-.property-description p {
   color: var(--text-light);
   line-height: 1.6;
   display: -webkit-box;
@@ -629,6 +626,16 @@ nav {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.property-description p,
+.property-description ul,
+.property-description ol {
+  margin: 0;
+}
+
+.property-description strong { font-weight: 600; }
+.property-description em { font-style: italic; }
+.property-description u { text-decoration: underline; }
 
 .property-actions {
   display: flex;
@@ -3187,6 +3194,19 @@ header .nav-links a.nav-active {
   line-height: 1.8;
   font-size: 0.97rem;
 }
+
+.pd-description p { margin: 0 0 0.75em; }
+.pd-description p:last-child { margin-bottom: 0; }
+.pd-description strong { font-weight: 700; }
+.pd-description em { font-style: italic; }
+.pd-description u { text-decoration: underline; }
+.pd-description ul,
+.pd-description ol {
+  margin: 0.5em 0 0.75em 1.5em;
+}
+.pd-description ul { list-style-type: disc; }
+.pd-description ol { list-style-type: decimal; }
+.pd-description li { margin-bottom: 0.25em; }
 
 /* Photo gallery thumbnails */
 .pd-gallery {

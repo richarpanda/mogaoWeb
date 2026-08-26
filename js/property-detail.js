@@ -1,12 +1,10 @@
 (function () {
-    var SUPABASE_URL = 'https://jrlzrrgfseykqkfpqvfd.supabase.co';
-    var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpybHpycmdmc2V5a3FrZnBxdmZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MjY3ODksImV4cCI6MjA5OTMwMjc4OX0.ruGVP8C6ura9scteHXDO7A3Bx-gA85XJ8gdtVU8GT1k';
+    var API_URL = 'https://jrlzrrgfseykqkfpqvfd.supabase.co/functions/v1/mogao-property';
     var WA_NUMBER = '525537865554';
-    var HEADERS = { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY };
 
-    function supabaseGet(path) {
-        return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: HEADERS }).then(function (r) {
-            if (!r.ok) throw new Error('Supabase ' + r.status);
+    function fetchProperty(id) {
+        return fetch(API_URL + '?id=' + encodeURIComponent(id)).then(function (r) {
+            if (!r.ok) throw new Error('Error ' + r.status);
             return r.json();
         });
     }
@@ -109,7 +107,7 @@
         if (prop.descripcion) {
             html += '<div class="pd-block">';
             html += '<h2 class="pd-block-title">Descripción</h2>';
-            html += '<p class="pd-description">' + prop.descripcion + '</p>';
+            html += '<div class="pd-description">' + prop.descripcion + '</div>';
             html += '</div>';
         }
 
@@ -236,16 +234,10 @@
 
         renderLoading();
 
-        var prop;
-        supabaseGet('propiedades?id=eq.' + id + '&select=id,titulo,descripcion,precio,ciudad,direccion,tipo_id,tipos_propiedad(nombre),estatus,latitud,longitud&limit=1')
-            .then(function (rows) {
-                if (!rows.length) { renderNotFound(); return null; }
-                prop = rows[0];
-                return supabaseGet('propiedad_fotos?propiedad_id=eq.' + id + '&select=url,orden&order=orden.asc');
-            })
-            .then(function (fotos) {
-                if (!fotos) return;
-                render(prop, fotos);
+        fetchProperty(id)
+            .then(function (data) {
+                if (!data.prop) { renderNotFound(); return; }
+                render(data.prop, data.fotos || []);
             })
             .catch(function (err) {
                 console.error('[Mogao]', err);

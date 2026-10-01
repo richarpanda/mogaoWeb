@@ -21,6 +21,72 @@
         vendida: 'Vendida'
     };
 
+    // ── Características ───────────────────────────────────────────
+
+    var NUMERIC_FEATURES = [
+        { key: 'recamaras',       label: 'Recámaras',      icon: 'fa-bed' },
+        { key: 'banos',           label: 'Baños',           icon: 'fa-shower' },
+        { key: 'medio_bano',      label: 'Medios baños',    icon: 'fa-toilet' },
+        { key: 'm2',              label: 'm² construidos',  icon: 'fa-ruler-combined' },
+        { key: 'm2_terreno',      label: 'm² terreno',      icon: 'fa-tree' },
+        { key: 'estacionamientos',label: 'Cajones',         icon: 'fa-car' },
+    ];
+
+    var AMENIDADES_FEATURES = [
+        { key: 'sala',            label: 'Sala' },
+        { key: 'comedor',         label: 'Comedor' },
+        { key: 'cocina',          label: 'Cocina' },
+        { key: 'area_servicio',   label: 'Área de servicio' },
+        { key: 'bodega',          label: 'Bodega' },
+        { key: 'pet_friendly',    label: 'Pet friendly' },
+        { key: 'terraza',         label: 'Terraza' },
+        { key: 'roof_garden',     label: 'Roof garden' },
+        { key: 'gimnasio',        label: 'Gimnasio' },
+        { key: 'coworking',       label: 'Coworking' },
+        { key: 'lobby',           label: 'Lobby' },
+        { key: 'vigilancia_24_7', label: 'Vigilancia 24/7' },
+        { key: 'alberca',         label: 'Alberca' },
+        { key: 'elevador',        label: 'Elevador' },
+        { key: 'jardin',          label: 'Jardín' },
+        { key: 'amueblado',       label: 'Amueblado' },
+    ];
+
+    function renderCaracteristicas(prop) {
+        var c = prop.caracteristicas;
+        if (!c) return '';
+
+        var numericItems = NUMERIC_FEATURES.filter(function (f) { return c[f.key] != null; });
+        var amenidades   = AMENIDADES_FEATURES.filter(function (f) { return !!c[f.key]; });
+
+        if (!numericItems.length && !amenidades.length) return '';
+
+        var html = '<div class="pd-block">';
+        html += '<h2 class="pd-block-title">Características</h2>';
+
+        if (numericItems.length) {
+            html += '<div class="pd-features-grid">';
+            numericItems.forEach(function (f) {
+                html += '<div class="pd-feature-chip">';
+                html += '<i class="fas ' + f.icon + ' pd-feature-icon"></i>';
+                html += '<span class="pd-feature-value">' + c[f.key] + '</span>';
+                html += '<span class="pd-feature-label">' + f.label + '</span>';
+                html += '</div>';
+            });
+            html += '</div>';
+        }
+
+        if (amenidades.length) {
+            html += '<div class="pd-amenidades">';
+            amenidades.forEach(function (f) {
+                html += '<span class="pd-amenidad-tag">' + f.label + '</span>';
+            });
+            html += '</div>';
+        }
+
+        html += '</div>';
+        return html;
+    }
+
     // ── Gallery state ──────────────────────────────────────────────
 
     var galleryPhotos = [];
@@ -110,6 +176,8 @@
             html += '<div class="pd-description">' + prop.descripcion + '</div>';
             html += '</div>';
         }
+
+        html += renderCaracteristicas(prop);
 
         // Photo gallery
         if (galleryPhotos.length > 0) {

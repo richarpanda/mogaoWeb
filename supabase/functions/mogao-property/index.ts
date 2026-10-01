@@ -26,7 +26,7 @@ Deno.serve(async (req: Request) => {
 
   const { data: rows, error: propError } = await supabase
     .from('propiedades')
-    .select('id,titulo,descripcion,precio,ciudad,direccion,tipo_id,tipos_propiedad(nombre),estatus,latitud,longitud')
+    .select('id,titulo,descripcion,precio,ciudad,direccion,tipo_id,tipos_propiedad(nombre),estatus,latitud,longitud,caracteristicas')
     .eq('id', id)
     .limit(1)
 

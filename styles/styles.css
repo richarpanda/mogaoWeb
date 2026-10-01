@@ -3536,3 +3536,65 @@ header .nav-links a.nav-active {
   color: #888;
   font-size: 0.95rem;
 }
+/* ── Property detail: características ─────────────────────────── */
+.pd-features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pd-feature-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: #f8f7f2;
+  border: 1px solid #e5e1d8;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  min-width: 80px;
+}
+
+.pd-feature-icon {
+  font-size: 1.1rem;
+  color: #0E3B36;
+}
+
+.pd-feature-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1;
+}
+
+.pd-feature-label {
+  font-size: 0.7rem;
+  color: #777;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.pd-amenidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pd-amenidad-tag {
+  display: inline-block;
+  border: 1px solid rgba(14, 59, 54, 0.35);
+  background: rgba(14, 59, 54, 0.05);
+  color: #0E3B36;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 480px) {
+  .pd-feature-chip {
+    min-width: 70px;
+    padding: 0.6rem 0.75rem;
+  }
+}
